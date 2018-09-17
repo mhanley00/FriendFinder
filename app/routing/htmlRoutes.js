@@ -16,6 +16,18 @@ module.exports = function(app) {
   // Below code handles when users "visit" a page.
   // In each of the below cases the user is shown an HTML page of content
 
+  app.get("/", function(req, res) {
+
+    // function Candidate(name, photo, scores) { //function to put candidate answers + photo into JSON
+    //   this.name = name;
+    //   this.photo = photo;
+    //   this.scores = scores;
+    // }
+    //newFriend[0] = new aFriend($(#name), $(#photo), 
+
+    res.redirect("/survey");
+  });
+
   app.get("/survey", function(req, res) {
 
     // function Candidate(name, photo, scores) { //function to put candidate answers + photo into JSON

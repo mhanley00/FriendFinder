@@ -17,8 +17,8 @@ app.use(bodyParser.json());
 // ______________________________________________________________________________
 //ROUTER - Connecting to .js data in routing folder
 // -----–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-require("./routing/apiRoutes")(app);
-require("./routing/htmlRoutes")(app);
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
 // ______________________________________________________________________________
 //LISTENER - start server
