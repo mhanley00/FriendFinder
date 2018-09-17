@@ -5,24 +5,25 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 // ______________________________________________________________________________
-// EXPRESS - app setup
+// EXPRESS - server setup
 // -----–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-var app = express();
+var app = express(); //we're making an express server
 var PORT = process.env.PORT || 3000;
 
-// Sets up the Express app to handle data parsing
+// Express app will handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-//think this may have to be on the front end js
-var questions = [
-    "You can't stand when people make grammar mistakes or misspell words in texts without correcting them.",
-    "You are adaptable to new situations and thrive on change.",
-    "You love learning new things.",
-    "You are active and enjoy spending time outside.",
-    "You want to live abroad.",
-    "You are a night owl.",
-    "Family is important to you.",
-    "Staying out until 3am sounds like a blast to you.",
-    "Rainy weather is the worst.",
-    "Bagels are one of the most magnificent foods in the world."
-];
+
+// ______________________________________________________________________________
+//ROUTER - Connecting to .js data in routing folder
+// -----–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+require("./routing/apiRoutes")(app);
+require("./routing/htmlRoutes")(app);
+
+// ______________________________________________________________________________
+//LISTENER - start server
+// -----–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+app.listen(PORT, function() {
+    console.log("App listening on PORT: " + PORT);
+  });
+  

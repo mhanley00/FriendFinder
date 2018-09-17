@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Friend Survey</title>
+
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+
+<body>
+<h2>Survey</h2>
+<hr>
+<h3>About You</h3>
+  <div>
+    <form role="form">
+      <div class="form-group">
+        <label for="user-name">Name</label>
+        <input type="text" id="user-name">
+      </div>
+      <div class="form-group">
+          <label for="user-photo">A Link to Your Profile Picture</label>
+          <input type="text" id="user-photo">
+        </div>
+        <div class="form-group">
+            <label for="user-score">A Link to Your Profile Picture</label>
+            <input type="text" id="user-score">
+          </div>
+<h4>Statement 1</h4>
+<select id=question-1 style="display: none;">
+  <option value></option>
+  <option value="1">1 (Strongly Disagree)</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 (Strongly Agree)</option>
+</select>
+<div class="chosen-container" style="width: 155px;" ie ="question-1_choice">
+  
+</div>
+<h4>Statement 2</h4>
+<h4>Statement 3</h4>
+<h4>Statement 4</h4>
+<h4>Statement 5</h4>
+<h4>Statement 6</h4>
+<h4>Statement 7</h4>
+<h4>Statement 8</h4>
+<h4>Statement 9</h4>
+<h4>Statement 10</h4>
+
+
+          <button type="submit" class="btn submit">Submit</button>
+    </form>
+
+  </div>
+
+  <script type="text/javascript">
+    // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
+    // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
+    // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
+    // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+    var questions = [
+    "You can't stand when people make grammar mistakes or misspell words in texts without correcting them.",
+    "You are adaptable to new situations and thrive on change.",
+    "You love learning new things.",
+    "You are active and enjoy spending time outside.",
+    "You want to live abroad.",
+    "You are a night owl.",
+    "Family is important to you.",
+    "Staying out until 3am sounds like a blast to you.",
+    "Rainy weather is the worst.",
+    "Bagels are one of the most magnificent foods in the world."
+];
+    $(".submit").on("click", function (event) {
+      event.preventDefault();
+
+      // Here we grab the form elements
+      var newFriend = {
+        name: $("#user-name").val().trim(),
+        photo: $("#user-photo").val().trim(),
+        scores: $("#user-score").val().trim(),
+      };
+
+      console.log(newFriend);
+
+      // This line is the magic. It"s very similar to the standard ajax function we used.
+      // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+      // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+      // depending on if a tables is available or not.
+
+      $.post("/api/friends", newFriend,
+        function (data) {
+
+          // If a match is close... tell them their match.
+          if (data) {
+            alert("Yay! You have a match!");
+          }
+          //POP-UP WINDOW HERE?
+          else {
+            alert("Sorry you need to wait for a match");
+          }
+
+
+
+        });
+
+    });
+  </script>
+</body>
