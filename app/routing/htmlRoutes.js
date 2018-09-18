@@ -16,16 +16,9 @@ module.exports = function(app) {
   // Below code handles when users "visit" a page.
   // In each of the below cases the user is shown an HTML page of content
 
-  app.get("/", function(req, res) {
+  app.get("/home", function(req, res) { 
 
-    // function Candidate(name, photo, scores) { //function to put candidate answers + photo into JSON
-    //   this.name = name;
-    //   this.photo = photo;
-    //   this.scores = scores;
-    // }
-    //newFriend[0] = new aFriend($(#name), $(#photo), 
-
-    res.redirect("/survey");
+    // res.redirect("/survey"); //this is a redirect to hold the place of my mainpage until I deploy
   });
 
   app.get("/survey", function(req, res) {
